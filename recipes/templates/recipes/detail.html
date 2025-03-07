@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.name }} - Recipe Details{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="mb-3">Details: {{ object.name }}</h2>
+
+        <div class="row">
+            <!-- left：pic -->
+            <div class="col-md-5">
+                <img src="{{ object.pic.url }}" class="img-fluid rounded shadow" alt="{{ object.name }}">
+            </div>
+
+            <!-- right：recipe -->
+            <div class="col-md-7">
+                <h3 class="text-primary">{{ object.name }}</h3>
+                <p><strong>Author:</strong> {{ object.created_by }}</p>
+                <p><strong>Created At:</strong> {{ object.created_at }}</p>
+                <p><strong>Cooking Time:</strong> {{ object.cooking_time }} minutes</p>
+                <p><strong>Ingredient Count:</strong> {{ object.ingredient_num }}</p>
+                <p><strong>Difficulty:</strong> {{ object.difficulty }}</p>
+            </div>
+        </div>
+
+        <!-- ingrdient list -->
+        <h3 class="mt-4">Ingredients:</h3>
+        <ul class="list-group">
+            {% for ingredient in ingredients %}
+                <li class="list-group-item">{{ ingredient.ingredient.name }} - {{ ingredient.quantity }}</li>
+            {% empty %}
+                <li class="list-group-item">No ingredients listed.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

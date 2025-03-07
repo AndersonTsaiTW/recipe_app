@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Ingredients List{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Ingredients' List</h1>
+
+    <div class="row">
+        {% for object in object_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card recipe-card">
+                <a href="{{ object.get_absolute_url }}">
+                    <img
+                        src="{{ object.pic.url }}"
+                        class="card-img-top"
+                        alt="{{ object.name }}"
+                    />
+                </a>
+                <div class="card-body">
+                    <a href="{{ object.get_absolute_url }}">
+                        <h5 class="recipe-title">{{ object.name }}</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Logout Success{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="text-success">You've successfully logged out!</h1>
+    <p class="lead">Want to try cooking something new? Here's a random recipe for you:</p>
+
+    {% if recipe %}
+        <div class="card mx-auto" style="width: 50%;">
+            <img src="{{ recipe.pic.url }}" class="card-img-top" alt="{{ recipe.name }}" height="250px">
+            <div class="card-body">
+                <h2 class="card-title">{{ recipe.name }}</h2>
+                <p class="card-text">{{ recipe.description }}</p>
+                <a href="{% url 'recipes:recipe_detail' recipe.id %}" class="btn btn-primary">Log back to View Full Recipe</a>
+            </div>
+        </div>
+    {% else %}
+        <p class="text-muted">No recipes available at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

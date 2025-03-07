@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% load static %} {% block title %}About Me - Anderson
+Tsai{% endblock %} {% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 text-center">
+      <div class="card shadow-lg border-0">
+        <div class="card-body">
+          <img
+            src="{% static 'images/FormalPhoto.jpg' %}"
+            class="img-fluid rounded-circle mb-3"
+            width="150"
+            alt="Anderson Tsai"
+          />
+          <h2 class="fw-bold">Hello!</h2>
+          <p class="text-muted"></p>
+          <p class="text-muted"></p>
+          <p class="text-muted">
+            I'm <strong>Anderson Tsai</strong>, a web developer & data analyst.
+            Currently pursuing a Computer Programming & Analysis diploma at
+            Seneca College, with a background in data analytics and finance.
+          </p>
+
+          <!-- Social Links -->
+          <h4 class="mt-3">Find me on</h4>
+          <div class="d-flex justify-content-center gap-3 mt-2">
+            <a
+              href="https://github.com/AndersonTsaiTW"
+              class="btn btn-dark btn-sm"
+            >
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/yu-hong-c-85651615b/"
+              class="btn btn-primary btn-sm"
+            >
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          </div>
+
+          <hr />
+          <p class="mt-3">
+            📧 Contact me:
+            <a
+              href="mailto:AndersonTsaiTW@gmail.com"
+              class="text-decoration-none"
+              >AndersonTsaiTW@gmail.com</a
+            >
+          </p>
+
+          <a
+            class="btn btn-outline-primary mt-2"
+            href="https://andersontsaitw.github.io/work.html"
+          >
+            <i class="fas fa-code"></i> Check out my work
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">Add New Ingredient</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.introduction.label_tag }}
+            {{ form.introduction }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.pic.label_tag }}
+            {{ form.pic }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Ingredient</button>
+        <a href="{% url 'recipes:recipe_add_ingredients' recipe_id=request.GET.recipe_id %}" class="btn btn-secondary">Back to Recipe</a>
+    </form>
+</div>
+{% endblock %}

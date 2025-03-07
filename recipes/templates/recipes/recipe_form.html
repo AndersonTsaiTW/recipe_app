@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Add New Recipe{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center my-4">Add a New Recipe</h2>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Recipe basic -->
+        <div class="mb-3">
+            {{ form.as_p }}
+        </div>
+
+        <!-- Ingredients input -->
+        <h3>Ingredients</h3>
+        <div id="ingredient-formset">
+            {{ ingredient_formset.management_form }}
+            {% for form in ingredient_formset %}
+                <div class="ingredient-entry border p-3 mb-2 rounded">
+                    {{ form.as_p }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- submit -->
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+<!-- JavaScript: by ingredient_num add formset -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const ingredientNumInput = document.getElementById("id_ingredient_num");
+    const ingredientFormset = document.getElementById("ingredient-formset");
+    const totalForms = document.getElementById("id_recipeingredient_set-TOTAL_FORMS");
+
+    ingredientNumInput.addEventListener("change", function () {
+        let numIngredients = parseInt(ingredientNumInput.value);
+        totalForms.value = numIngredients;  // **update Django forms**
+    });
+});
+</script>
+{% endblock %}

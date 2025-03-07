@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Recipe Data Analysis{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">Recipe Data Analysis</h1>
+
+    <div class="row">
+        <!-- Left: Search by Ingredient (Pie Chart) -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow p-3 mb-4 bg-white rounded text-center">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="card-title">Search Recipes by Ingredient</h2>
+                    <form method="GET" class="d-flex flex-column align-items-center mt-auto">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            {{ form.ingredient.label_tag }} {{ form.ingredient }}
+                        </div>
+                        <input type="hidden" name="chart_type" value="#1">
+                        <button type="submit" class="btn btn-warning">Search & Pie Chart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center: Bar Chart for Popular Ingredients -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow p-3 mb-4 bg-white rounded text-center">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="card-title">Popular Ingredients</h2>
+                    <form method="GET" class="mt-auto">
+                        <input type="hidden" name="chart" value="#2">
+                        <button type="submit" class="btn btn-warning">Generate Bar Chart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Line Chart for Recipe Growth -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow p-3 mb-4 bg-white rounded text-center">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="card-title">Recipe Added Over Time</h2>
+                    <form method="GET" class="mt-auto">
+                        <input type="hidden" name="chart" value="#3">
+                        <button type="submit" class="btn btn-warning">Generate Line Chart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Display Recipe List Below -->
+    {% if recipes_df %}
+        <h2 class="section-title">Recipes that Contain "{{ request.GET.ingredient }}"</h2>
+        <div class="table-responsive">
+            {{ recipes_df|safe }}
+        </div>
+    {% endif %}
+
+    <!-- Display Generated Chart Below -->
+    {% if chart %}
+        <h2 class="section-title">Generated Chart</h2>
+        <div class="d-flex justify-content-center">
+            <img src="{{ chart }}" alt="Recipe Chart" class="img-fluid">
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

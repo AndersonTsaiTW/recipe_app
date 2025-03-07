@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Add Ingredients for "{{ recipe.name }}"</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ formset.management_form }}
+
+    {% for form in formset %}
+        <div class="card p-3 mb-3">
+            <div class="mb-2">
+                {{ form.ingredient.label_tag }}
+                {{ form.ingredient }}
+                <a href="{% url 'ingredients:add_ingredient' %}?recipe_id={{ recipe.id }}" class="btn btn-sm btn-secondary">
+                    + Add New Ingredient
+                </a>
+            </div>
+            <div class="mb-2">
+                {{ form.quantity.label_tag }}
+                {{ form.quantity }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Save Ingredients</button>
+</form>
+{% endblock %}
