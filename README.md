@@ -62,3 +62,15 @@ myvenv\Scripts\activate     # Windows
 ```bash
 pip install -r requirements.txt
 ```
+---
+## 📩 Where to Get Help
+If you encounter any issues, please check the [GitHub Issues](https://github.com/AndersonTsaiTW/recipe_app/issues) page or reach out via email: **AndersonTsaiTW@gmail.com**.
+
+---
+
+## 👥 Contributors & Maintainers
+This project is maintained by:  
+- **[Anderson Tsai](https://github.com/AndersonTsaiTW)** – Lead Developer  
+
+Want to contribute? Feel free to fork this repository and submit a pull request! 🚀
+
